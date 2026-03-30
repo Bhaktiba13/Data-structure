@@ -1,0 +1,373 @@
+<!-- 1) WAP to explain all string handling functions of JS. -->
+
+<html>
+    <head>
+        <title>Concat Demo</title>
+    </head>
+    <body>
+        <h1>Concat two or more string:</h1>
+        <script>
+            var text1="I'm";
+            var text2="Bhaktiba";
+            var result=text1.concat(" ",text2);
+            document.writeln(result);//I'm Bhaktiba
+
+            name="Bhaktiba";
+
+            document.writeln("<br>Slice : "+name.slice(2,7));//aktib
+
+            document.writeln("<br>Lower case : "+name.toLowerCase());//bhaktiba
+
+            document.writeln("<br>Upper case : "+name.toUpperCase());//BHAKTIBA
+
+            document.writeln("<br>Value of : "+name.valueOf());//Bhaktiba
+
+            document.writeln("<br>Convert ascii value into character : "+String.fromCharCode(89));//Y
+
+            document.writeln("<br>Character at index position 4 is: "+name.charAt(4));//t
+
+            document.writeln("<br>Ascii value: "+name.charCodeAt());//66
+
+            document.writeln("<br>Starts with y: "+name.startsWith('y'));//false
+
+            document.writeln("<br>Ends with a: "+name.endsWith('a'));//true
+
+            document.writeln("<br>Include ba: "+name.includes("ba"));//true
+
+            document.writeln("<br>Index of k: "+name.indexOf('k'));//3
+
+            document.writeln("<br>Last index of a: "+name.lastIndexOf('a'));//7
+
+            document.writeln("<br>Match : "+name.match('yashu'));//null
+
+            document.writeln("<br>Repeat: "+name.repeat(3));//BhaktibaBhaktibaBhaktiba
+
+            document.writeln("<br>Replace : ");
+            name2=name.replace("Bhaktiba","Solanki");
+            document.writeln(name2); //Solanki
+
+            document.writeln("<br>Search k : "+name.search('k'));//3
+
+            document.writeln("<br>Split with ,: "+name.split('b'));//Bhakti,a
+
+            document.writeln("<br>Substr: "+name.substr(6,2));//6th index to 2 character   ba
+
+            document.writeln("<br>Substring: "+name.substring(2,4));//2nd index to 4th character  ak
+
+            document.writeln("<br>To string: "+name.toString());//Bhaktiba
+
+            document.writeln("<br>Trim: "+name.trim());//remove space Bhaktiba
+        </script>
+    </body>
+</html>
+
+
+<!-- 2) WAP to explain all the types of loops of JS. -->
+
+// 1️⃣ for loop
+document.writeln("---- for loop ----");
+for (let i = 1; i <= 3; i++) {
+    document.writeln("for loop:", i);
+}
+
+// 2️⃣ while loop
+document.writeln("---- while loop ----");
+let i = 1;
+while (i <= 3) {
+    document.writeln("while loop:", i);
+    i++;
+}
+
+// 3️⃣ do...while loop
+document.writeln("---- do...while loop ----");
+let i = 1;
+do {
+    document.writeln("do...while loop:", i);
+    i++;
+} while (i <= 3);
+
+// 4️⃣ for...in loop (Object)
+document.writeln("---- for...in loop ----");
+let student = {
+    name: "Rahul",
+    age: 20,
+    course: "BCA"
+}; 
+
+for (let key in student) {
+    document.writeln(key + " : " + student[key]);
+}
+
+// 5️⃣ for...of loop (Array)
+document.writeln("---- for...of loop ----");
+let numbers = [10, 20, 30];
+
+for (let value of numbers) {
+    document.writeln("for...of loop:", value);
+}
+
+// 6️⃣ forEach loop (Array)
+document.writeln("---- forEach loop ----");
+numbers.forEach(function(element) {
+    document.writeln("forEach loop:", element);
+});
+
+<!-- 3) Write a code to validate name, phone number and password (must be between 8-12
+character and must contain uppercase, lowercase, digit and a special symbol). -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Format Validation</title>
+</head>
+<body>
+
+<h1>Data Format Validation:</h1>
+
+<form onsubmit="return validateform()" name="frm">
+    
+    Name: <input type="text" name="txtname"><br><br>
+    
+    Contact: <input type="text" name="txtcontact"><br><br>
+    
+    Password: <input type="password" name="txtpassword"><br><br>
+    
+    <input type="submit" name="submit">
+    
+</form>
+
+<script type="text/JavaScript">
+
+function validateform()
+{
+    var name = document.frm.txtname.value;
+    var contact = document.frm.txtcontact.value;
+    var password = document.frm.txtpassword.value;
+
+    // Name validation (only letters, minimum 3 characters)
+    if(!name.match(/^[A-Za-z]+$/))
+    {
+        alert("Please enter valid name (Only letters, minimum 3 characters)");
+        document.frm.txtname.focus();
+        return false;
+    }
+
+    // Contact validation (10 digits)
+    if(!contact.match(/^[0-9]{10}$/))
+    {
+        alert("Please enter valid contact number (10 digits only)");
+        document.frm.txtcontact.focus();
+        return false;
+    }
+
+    // Password validation (8-12 chars, 1 upper, 1 lower, 1 digit, 1 special char)
+    if(!password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,12}$/))
+    {
+        alert("Password must be 8-12 characters and contain uppercase, lowercase, digit and special symbol");
+        document.frm.txtpassword.focus();
+        return false;
+    }
+
+    alert("Form Submitted Successfully!");
+    return true;
+}
+
+</script>
+
+</body>
+</html>
+
+<!-- 4) Write a code to validate email address and user name (username must can contain
+uppercase, lowercase, digit, any of the three symbols _, -, @). -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Email & Username Validation</title>
+</head>
+<body>
+
+<h2>Validation Form</h2>
+
+<form onsubmit="return validateform()" name="frm">
+    
+    Username: <input type="text" name="txtusername"><br><br>
+    
+    Email: <input type="text" name="txtemail"><br><br>
+    
+    <input type="submit" value="Submit">
+
+</form>
+
+<script type="text/JavaScript">
+
+function validateform()
+{
+    var username = document.frm.txtusername.value;
+    var email = document.frm.txtemail.value;
+
+    // Username validation
+    if(!username.match(/^[A-Za-z0-9_@-]+$/))
+    {
+        alert("Username can contain only letters, digits, _, - and @");
+        document.frm.txtusername.focus();
+        return false;
+    }
+
+    // Email validation
+    if(!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/))
+    {
+        alert("Please enter valid email address");
+        document.frm.txtemail.focus();
+        return false;
+    }
+
+    alert("Form Submitted Successfully!");
+    return true;
+}
+
+</script>
+
+</body>
+</html>
+
+<!-- 6) WAP to design a form using HTML and JavaScript that asks the user to enter his date of
+birth and on clicking the Calculate Button it calls the function that calculates how many
+days are left in your birthday -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday</title>
+</head>
+<body>
+    <h2>Calculate Birthday: </h2>
+    
+    <form>
+        Select DOB: <input type="date" name="dob" id="dob"/>
+        <br>
+        <input type="submit" value="calculate" onclick="daysremaining()">
+    </form>
+
+    <script>
+        function daysremaining()
+        {
+            currentDate=new Date();
+            currentYear=currentDate.getFullYear();
+            d=document.getElementById("dob").value;
+            dob=new Date(d);
+            dob.setFullYear(currentYear);
+
+            if(dob<currentDate)
+        {
+            dob.setFullYear(currentYear+1);
+        }
+
+        timeLeft=Math.abs(dob-currentDate);
+        daysLeft=Math.ceil(timeLeft/(1000*60*60*24));
+
+        if(daysLeft==365)
+        {
+            document.write("It's Your Birthday!!!!!");
+        }
+        else
+        {
+            document.write("Your Birthday in "+daysLeft+"days");
+        }
+        }
+    </script>
+    </body>
+    </html>
+
+
+    <!-- 7) WAP to explain Callbacks in javascript with example. -->
+
+<script>
+
+// Callback function
+function greet(name, callback) {
+    document.write("Hello " + name + "<br>");
+    callback();   // calling callback function
+}
+
+// Another function
+function message() {
+    document.write("Welcome to JavaScript!<br>");
+}
+
+// Passing function as argument
+greet("Rahul", message);
+
+</script>
+
+<!-- 9) WAP to perform insert, update and delete operation on a static array using javascript. -->
+
+    <script type="text/javascript">
+        let num=[5,10,15,20,25,30];
+        num.push(35);
+        document.write("<br>Push: "+num+"<br>");
+        num.pop();
+        document.write("<br>Pop: "+num+"<br>");
+        num.unshift(45);
+        document.write("<br>Unshift: "+num+"<br>");
+        num.shift();
+        document.write("<br>Shift: "+num+"<br>");
+    </script>
+
+
+<!-- 8) WAP to explain “function as argument” with example. -->
+
+<script>
+
+function calculate(a, b, operation)
+ {
+    var result = operation(a, b);   
+    document.write(result);
+}
+
+function add(x, y) 
+{
+    return x + y;
+}
+
+calculate(10, 5, add);
+
+</script>
+
+
+<!-- 10) WAP to demonstrate map, every and includes function of ES6. -->
+
+<script>
+        const num0 = [1,2,3,4,5,6,7,8,9,10];
+        let arr = num0.map((e) => e*e);
+        document.write(arr);
+
+        const num1 = [6, 7, 5, 4, 5, 4, 5];
+        let result = num1.every((e) => e > 3);
+        document.write(result);
+
+        let num2 = [6, 7, 5, 4, 5, 4, 5];
+        let result = num2.includes(7);
+        document.write(result);
+</script>
+
+<!-- 11) WAP to demonstrate some, filter and reduce function of ES6. -->
+
+<script>
+        let num1 = [2, 4, 6, 8, 9];
+        let result1 = num1.some((e) => e % 2 != 0);
+        document.write(result1);
+
+        let num2 = [10, 15, 20, 25, 30];
+        let result2 = num2.filter((e) => e > 20);
+        document.write(result2);
+
+        let num3 = [1, 2, 3, 4, 5];
+        let result3 = num3.reduce((total, e) => total + e);
+        document.write(result3);
+</script>
+
+
